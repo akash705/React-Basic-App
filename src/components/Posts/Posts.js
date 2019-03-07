@@ -5,7 +5,8 @@ import classes from './Posts.css';
 class Post extends React.Component{
     render(){
         return (
-                this.props.posts.length?this.props.posts.map(data=>{
+            <div className={classes.marginTop}>
+                {this.props.posts.length?this.props.posts.map(data=>{
                     return (
                     <SinglePost key={data.id} 
                         title={data.title}
@@ -16,7 +17,8 @@ class Post extends React.Component{
                     <div className={classes.center}>
                         No Post Found 
                     </div>
-                )
+                )}
+            </div>
         )
     }
 }
