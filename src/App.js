@@ -5,6 +5,8 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 // import Button from '@material-ui/core/Button';
 import Post from './components/Posts/Posts';
+import { BrowserRouter,Route } from 'react-router-dom';
+import SinglePostPage from './components/Posts/singlePage/singlePostPage';
 
 class App extends Component {
   constructor(props){
@@ -23,7 +25,12 @@ class App extends Component {
     return (
       <div className="App">
           <NavBar></NavBar>
-          <Post></Post>
+          <BrowserRouter>
+            <div>
+                <Route path="/" exact component={Post}></Route>
+                <Route path="/Post/:id" exact component={SinglePostPage}></Route>
+            </div>
+          </BrowserRouter>
       </div>
     );
   }
