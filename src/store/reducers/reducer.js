@@ -1,15 +1,14 @@
 var initialState={
     originalData:[],
-    FilteredData:[],
+    filteredData:[],
 }
 
 var reducer = (state=initialState,action)=>{
     switch(action.type){
         case ("requestComplete"):{
-            console.log(action.data);
             return {
-                ...state,
-                originalData:action.data
+                originalData:[...action.data],
+                filteredData:[...action.data]
             }
         };
         case ("requestFailed"):{
