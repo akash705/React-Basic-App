@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import {fromEvent} from 'rxjs';
+import {fromEvent, Observable } from 'rxjs';
+import { switchMap} from 'rxjs/operators';
 import RootRef from '@material-ui/core/RootRef';
 
 // import Button from '@material-ui/core/Button';
@@ -10,6 +11,7 @@ import RootRef from '@material-ui/core/RootRef';
 // import MenuIcon from '@material-ui/icons/Menu';
 import InputBase from '@material-ui/core/InputBase';
 import classes from './navbar.css';
+import { connect } from 'react-redux';
 
 class navBar extends Component{
     state={
@@ -21,14 +23,36 @@ class navBar extends Component{
         this.inputText = React.createRef();
     }
     componentDidMount(){
-        this.subscription = fromEvent(this.inputText.current,'input').subscribe(data=>{   
-            this.setState({value:data.target.value});
+        let len=0;
+        this.subscriber  = fromEvent(this.inputText.current,'input');
+        this.subscriber.pipe(switchMap(val=>this.finding('Aka',len++)))
+        .subscribe((data,len)=>{
+                    console.log('completed Observabledata');
+                    console.log(data);
+        },()=>{},(complete)=>{
+
         })
-    }   
+    } 
+    change=(event)=>{
+        this.setState({value:event.target.value});
+    }  
     componentWillUnmount(){
         if(this.subscription){
             this.subscription.unsubscribe();
         }
+    }
+    finding(str,len){
+        return new Observable((subscriber)=>{
+                setTimeout(data=>{
+                    subscriber.next(
+                        {done:this.props.posts.filter(data=>data.title.includes(str)),
+                            length:len}
+                    );
+                    
+                    subscriber.complete();
+                },2000);
+                
+        })
     }
     
     render(){
@@ -45,7 +69,7 @@ class navBar extends Component{
                     {/* <Button color="inherit" className="float-right" >Login</Button> */}
                         <RootRef rootRef={this.inputText}>
                                 <InputBase className={classes.inputInput}
-                                placeholder="Search…"   value={this.state.value}
+                                placeholder="Search…" onChange={this.change}   value={this.state.value}
                                 ref={this.inputText}
                                 />
                         </RootRef>
@@ -54,4 +78,9 @@ class navBar extends Component{
         );
     }
 }
-export default navBar;
+var mapsToProps=(state)=>{
+    return {
+        posts:state.filteredData
+    };
+}
+export default connect(mapsToProps,undefined)(navBar);
