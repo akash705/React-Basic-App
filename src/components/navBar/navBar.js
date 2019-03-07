@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {fromEvent, Observable } from 'rxjs';
-import { switchMap} from 'rxjs/operators';
+import { switchMap, throttleTime, debounceTime} from 'rxjs/operators';
 import RootRef from '@material-ui/core/RootRef';
 
 // import Button from '@material-ui/core/Button';
@@ -25,12 +25,10 @@ class navBar extends Component{
     componentDidMount(){
         let len=0;
         this.subscriber  = fromEvent(this.inputText.current,'input');
-        this.subscriber.pipe(switchMap(val=>this.finding('Aka',len++)))
+        this.subscriber.pipe(debounceTime(500),switchMap(val=>this.finding(this.state.value,len++)))
         .subscribe((data,len)=>{
-                    console.log('completed Observabledata');
-                    console.log(data);
+                    this.props.dispatch({type:'filter',data:data});
         },()=>{},(complete)=>{
-
         })
     } 
     change=(event)=>{
@@ -43,15 +41,10 @@ class navBar extends Component{
     }
     finding(str,len){
         return new Observable((subscriber)=>{
-                setTimeout(data=>{
                     subscriber.next(
-                        {done:this.props.posts.filter(data=>data.title.includes(str)),
-                            length:len}
+                        this.props.originalData.filter(data=>data.title.includes(str))
                     );
-                    
                     subscriber.complete();
-                },2000);
-                
         })
     }
     
@@ -80,7 +73,13 @@ class navBar extends Component{
 }
 var mapsToProps=(state)=>{
     return {
-        posts:state.filteredData
+        posts:state.filteredData,
+        originalData:state.originalData
     };
+}
+var dispatcher=(dispatch)=>{
+    return {
+        dispatch:(data)=>dispatch(data)
+    }
 }
 export default connect(mapsToProps,undefined)(navBar);

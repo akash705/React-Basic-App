@@ -11,10 +11,10 @@ var reducer = (state=initialState,action)=>{
                 filteredData:[...action.data]
             }
         };
-        case ("requestFailed"):{
+        case ("filter"):{
             return {
                 ...state,
-                originalData:action.data
+                filteredData:[...action.data]
             }
         };
         case ("requestComplete"):{
