@@ -5,7 +5,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 // import Button from '@material-ui/core/Button';
 import Post from './components/Posts/Posts';
-import { BrowserRouter,Route } from 'react-router-dom';
+import { BrowserRouter,Route ,Router} from 'react-router-dom';
 import SinglePostPage from './components/Posts/singlePage/singlePostPage';
 import {withRouter} from 'react-router-dom';
 class App extends Component {
