@@ -7,14 +7,14 @@ import {connect} from 'react-redux';
 import Post from './components/Posts/Posts';
 import { BrowserRouter,Route } from 'react-router-dom';
 import SinglePostPage from './components/Posts/singlePage/singlePostPage';
-
+import {withRouter} from 'react-router-dom';
 class App extends Component {
   constructor(props){
       super(props);
   }
   componentDidMount(){
       this.getPost()
-  }
+    }
   getPost=async ()=>{
     axios.get('https://jsonplaceholder.typicode.com/posts')
     .then(data=>{
@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <NavBar></NavBar>
+          <NavBar routerConfig={this.props}></NavBar>
           <BrowserRouter>
             <div>
                 <Route path="/" exact component={Post}></Route>

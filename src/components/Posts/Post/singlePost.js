@@ -5,11 +5,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import classes from './Post.css';
-
+import {withRouter} from 'react-router-dom';
 class SinglePost extends React.Component{
     done=()=>{
-        console.log(this.props.id);
-        
+        console.log(this.props);
+        this.props.history.push('/Post/'+this.props.id);
     }
     render(props){
         return(
@@ -26,4 +26,4 @@ class SinglePost extends React.Component{
         ) 
     }
 }
-export default SinglePost;
+export default withRouter(SinglePost);

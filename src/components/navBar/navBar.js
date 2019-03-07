@@ -12,6 +12,8 @@ import RootRef from '@material-ui/core/RootRef';
 import InputBase from '@material-ui/core/InputBase';
 import classes from './navbar.css';
 import { connect } from 'react-redux';
+import { withRouter ,Route} from 'react-router-dom'
+import {compose} from 'react';
 
 class navBar extends Component{
     state={
@@ -22,7 +24,7 @@ class navBar extends Component{
         super(props);
         this.inputText = React.createRef();
     }
-    componentDidMount(){
+    componentDidMount(){    
         let len=0;
         this.subscriber  = fromEvent(this.inputText.current,'input');
         this.subscriber.pipe(debounceTime(500),switchMap(val=>this.finding(this.state.value,len++)))
@@ -82,4 +84,4 @@ var dispatcher=(dispatch)=>{
         dispatch:(data)=>dispatch(data)
     }
 }
-export default connect(mapsToProps,undefined)(navBar);
+export default connect(mapsToProps,dispatcher)(navBar);
