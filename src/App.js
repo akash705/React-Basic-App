@@ -24,9 +24,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <NavBar routerConfig={this.props}></NavBar>
           <BrowserRouter>
             <div>
+                {/* <NavBar routerConfig={this.props}></NavBar> */}
+                <Route path="/" component={NavBar}></Route>
                 <Route path="/" exact component={Post}></Route>
                 <Route path="/Post/:id" exact component={SinglePostPage}></Route>
             </div>
