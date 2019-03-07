@@ -1,0 +1,14 @@
+.inputInput   {
+    flex-grow: 1 !important;
+    text-align:right;
+    color:white;
+    margin-left:20px;
+}
+.inputInput > input{
+    text-align:right;
+    color:white 
+}
+.inputInput > input > ::-webkit-input-placeholder{
+     text-align:right;
+     color:white;
+}
