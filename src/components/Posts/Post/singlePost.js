@@ -8,7 +8,6 @@ import classes from './Post.css';
 import {withRouter} from 'react-router-dom';
 class SinglePost extends React.Component{
     done=()=>{
-        console.log(this.props);
         this.props.history.push('/Post/'+this.props.id);
     }
     render(props){

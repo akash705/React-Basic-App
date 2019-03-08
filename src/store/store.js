@@ -10,7 +10,6 @@ const sagaMiddleware = createSagaMiddleware()
 var middleware=(store)=>{
     return (next)=>{
         return (action)=>{
-            console.log('middleWare');
             return next(action);
         }
     }

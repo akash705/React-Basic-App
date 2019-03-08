@@ -25,7 +25,6 @@ class navBar extends Component{
         this.inputText = React.createRef();
     }
     componentDidMount(){
-        console.log(this.props);    
         let len=0;
         this.subscriber  = fromEvent(this.inputText.current,'input');
         this.subscriber.pipe(debounceTime(500),switchMap(val=>this.finding(this.state.value,len++)))

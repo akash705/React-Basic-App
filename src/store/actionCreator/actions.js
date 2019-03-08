@@ -1,12 +1,12 @@
 import thunk from 'redux-thunk';
 
 const action=(data)=>{
-    console.log('********************');
+    // console.log('********************');
     // thunks code
     return (dispatch,getstate)=>{
-    console.log('********************');
+    // console.log('********************');
         setTimeout(() => {
-            console.log(getstate());
+            // console.log(getstate());
             dispatch( {
                 type:'requestComplete',
                 data:data
