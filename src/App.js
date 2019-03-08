@@ -8,6 +8,7 @@ import Post from './components/Posts/Posts';
 import { BrowserRouter,Route ,Router} from 'react-router-dom';
 import SinglePostPage from './components/Posts/singlePage/singlePostPage';
 import {withRouter} from 'react-router-dom';
+import action from  './store/actionCreator/actions';
 class App extends Component {
   constructor(props){
       super(props);
@@ -18,7 +19,7 @@ class App extends Component {
   getPost=async ()=>{
     axios.get('https://jsonplaceholder.typicode.com/posts')
     .then(data=>{
-      this.props.innerDispatch({type:'requestComplete',data:data.data});
+      this.props.innerDispatch(data.data);
     })  
   }
   render() {
@@ -44,7 +45,7 @@ var mapsToProps=(state)=>{
 }
 var dispatch = (dispatch)=>{
   return {
-      innerDispatch :(data)=>dispatch(data)
+      innerDispatch :(data)=>dispatch(action(data))
   }
 }
 
