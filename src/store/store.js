@@ -1,6 +1,11 @@
 import {createStore,applyMiddleware} from 'redux';
 import reducer from './reducers/reducer';
 import thunk from 'redux-thunk';
+import mySaga from './sagas/tempsaga';
+import createSagaMiddleware from 'redux-saga'
+
+const sagaMiddleware = createSagaMiddleware()
+
 
 var middleware=(store)=>{
     return (next)=>{
@@ -11,6 +16,8 @@ var middleware=(store)=>{
     }
 }
 
-var store = createStore(reducer,applyMiddleware(middleware,thunk));
+var store = createStore(reducer,applyMiddleware(middleware,thunk,sagaMiddleware));
+sagaMiddleware.run(mySaga);
+
 
 export default store;

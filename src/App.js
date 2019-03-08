@@ -9,6 +9,8 @@ import { BrowserRouter,Route ,Router} from 'react-router-dom';
 import SinglePostPage from './components/Posts/singlePage/singlePostPage';
 import {withRouter} from 'react-router-dom';
 import action from  './store/actionCreator/actions';
+
+
 class App extends Component {
   constructor(props){
       super(props);

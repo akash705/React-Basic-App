@@ -11,13 +11,6 @@ const action=(data)=>{
                 type:'requestComplete',
                 data:data
             });
-            setTimeout(data=>{
-                console.log('second dispatch');
-               dispatch({
-                   type:'requestComplete',
-                   data:[]
-               })
-            },1000)
         }, 2000);
     }
 
