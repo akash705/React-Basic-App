@@ -9,7 +9,11 @@ import { BrowserRouter,Route ,Router} from 'react-router-dom';
 import SinglePostPage from './components/Posts/singlePage/singlePostPage';
 import {withRouter} from 'react-router-dom';
 import action from  './store/actionCreator/actions';
+import lazyLoading from './lazyLoadin';
 
+var asyncLazyLoading = lazyLoading(()=>{
+  return import ('./components/Posts/singlePage/singlePostPage');
+})
 
 class App extends Component {
   constructor(props){
@@ -32,7 +36,7 @@ class App extends Component {
                 {/* <NavBar routerConfig={this.props}></NavBar> */}
                 <Route path="/" component={NavBar}></Route>
                 <Route path="/" exact component={Post}></Route>
-                <Route path="/Post/:id" exact component={SinglePostPage}></Route>
+                <Route path="/Post/:id" exact component={asyncLazyLoading}></Route>
             </div>
           </BrowserRouter>
       </div>
