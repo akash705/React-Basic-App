@@ -7,7 +7,6 @@ const lazyLoaded = (imported)=>{
         }
         componentDidMount(){
             imported().then(data=>{
-                console.log('lazy loaded ',data);
                 this.setState({component:data.default});
             });
         }
