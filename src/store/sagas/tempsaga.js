@@ -10,6 +10,6 @@ function x(){
 }
 function* mySaga() {
     yield takeLatest("requestComplete",x);
-    console.log('after promise');
+    console.log('my saga completed');
 }
 export default mySaga;
