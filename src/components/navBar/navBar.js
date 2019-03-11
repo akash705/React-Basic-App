@@ -61,13 +61,11 @@ class navBar extends Component{
                     <Typography variant="h6" color="inherit" >
                         GitHub
                     </Typography>
-                    
                     <Button color="inherit" className="float-right" >
-                        <a href="https://fir-search-post.firebaseapp.com/" className={classes.link} target="_">
-                        Angular Version
+                        <a  className={classes.link} href="https://fir-search-post.firebaseapp.com/" target="_">
+                            Angular version
                         </a>
                     </Button>
-                    {/* https://fir-search-post.firebaseapp.com/ */}
                         <RootRef rootRef={this.inputText}>
                                 <InputBase className={classes.inputInput}
                                 placeholder="Search…" onChange={this.change}   value={this.state.value}
