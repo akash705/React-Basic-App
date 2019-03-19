@@ -8,4 +8,6 @@ https://fir-search-post.firebaseapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Patterns Used 
+
 Pattern Such as Rxjs - SwitchMap , Observables , React Lazy Loading , Routing  , Auth Guard are used in the Same.
