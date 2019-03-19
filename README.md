@@ -10,4 +10,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Patterns Used 
 
-Pattern Such as Rxjs - SwitchMap , Observables , React Lazy Loading , Routing  , Auth Guard are used in the Same.
+Pattern Such as Rxjs - SwitchMap , Observables , React Lazy Loading , Routing  , Auth Guard , Redux , React-Redux , Thunks , React Saga
